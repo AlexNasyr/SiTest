@@ -14,7 +14,7 @@ namespace SiTest {
             ConcurrentDictionary<string, List<Place>> places = new ConcurrentDictionary<string, List<Place>>();
             
             foreach(PropertiesProvider curroper in operators_pool){
-                places.TryAdd(curroper.ProviderName, (List<Place>)curroper.SearchByAddress("dream place"));
+                Task.Run(() => places.TryAdd(curroper.ProviderName, (List<Place>)curroper.SearchByAddress("dream place")));
             }
 
             int selected_place = 5;
